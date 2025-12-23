@@ -1,5 +1,10 @@
 ---
 deployment:
   tasks:
-    -export DEPLOYMENT=/home/KadGeo/index_html/
-    -cp * $DEPLOYMENT
+    - export DEPLOYPATH=/home/KadGeo/public_html/
+    - /bin/cp -R * $DEPLOYPATH
+    - /bin/rm -rf $DEPLOYPATH/node_modules
+    - /bin/rm -rf $DEPLOYPATH/.git
+    - /bin/rm -f $DEPLOYPATH/.gitignore
+    - /bin/rm -f $DEPLOYPATH/.env
+    - /bin/rm -f $DEPLOYPATH/.cpanel.yml
