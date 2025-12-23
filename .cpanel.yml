@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    -export DEPLOYMENT=/home/KadGeo/public_html/
+    -cp * $DEPLOYMENT
