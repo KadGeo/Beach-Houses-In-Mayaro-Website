@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/KadGeo/public_html/Beach-Houses-In-Mayaro-Website
+    - export DEPLOYPATH=/home/public_html/Beach-Houses-In-Mayaro-Website
     - /bin/cp index.html $DEPLOYPATH
     - /bin/cp blog.html $DEPLOYPATH
     - /bin/cp robots.txt $DEPLOYPATH
