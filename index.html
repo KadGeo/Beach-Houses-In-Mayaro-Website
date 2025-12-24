@@ -48,8 +48,8 @@
     .bi-list:before{content:"\f479"}
     .bi-x:before{content:"\f62a"}
     @media (max-width:1199px){
-      .navmenu{position:fixed;top:0;right:-100%;width:100vw;height:100vh;background:rgba(0,0,0,0.95);padding:0;transition:0.3s;z-index:9998;display:flex!important;align-items:center;justify-content:center}
-      body.mobile-nav-active .navmenu{right:0}
+      .navmenu{position:fixed;top:0;left:-100%;width:100vw;height:100vh;min-height:100vh;background:rgba(0,0,0,0.95);padding:0;transition:left 0.3s ease;z-index:9998;display:flex!important;align-items:center;justify-content:center;overflow-y:auto}
+      body.mobile-nav-active .navmenu{left:0}
       .navmenu ul{flex-direction:column;gap:2rem;align-items:center;justify-content:center;text-align:center;width:100%}
       .navmenu li{width:100%!important;text-align:center!important;position:static!important;left:0!important;display:flex!important;justify-content:center!important}
       .navmenu li:nth-child(5){width:100%!important;text-align:center!important;padding-left:0!important;display:flex!important;justify-content:center!important}
