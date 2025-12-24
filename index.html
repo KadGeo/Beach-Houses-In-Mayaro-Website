@@ -48,13 +48,14 @@
     .bi-list:before{content:"\f479"}
     .bi-x:before{content:"\f62a"}
     @media (max-width:1199px){
-      .navmenu{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:rgba(0,0,0,0.95);padding:50px 20px;transition:0.3s;z-index:9998;display:block!important}
+      .navmenu{position:fixed;top:0;right:-100%;width:100vw;height:100vh;background:rgba(0,0,0,0.95);padding:0;transition:0.3s;z-index:9998;display:flex!important;align-items:center;justify-content:center}
       body.mobile-nav-active .navmenu{right:0}
-      .navmenu ul{flex-direction:column;gap:1rem}
-      .navmenu li{width:100%!important;text-align:left!important}
-      .navmenu li:nth-child(5){width:100%!important;text-align:left!important;padding-left:20px!important}
+      .navmenu ul{flex-direction:column;gap:2rem;align-items:center;justify-content:center;text-align:center;width:100%}
+      .navmenu li{width:100%!important;text-align:center!important;position:static!important;left:0!important;display:flex!important;justify-content:center!important}
+      .navmenu li:nth-child(5){width:100%!important;text-align:center!important;padding-left:0!important;display:flex!important;justify-content:center!important}
+      .navmenu a{color:#fff!important;font-size:1.5rem;padding:10px 20px}
       .mobile-nav-toggle{display:block!important}
-      .site-title{font-size:1.5rem!important}
+      .site-title{font-size:1rem!important;display:block!important;position:absolute!important;left:52%!important;transform:translateX(-40%)!important;white-space:nowrap!important}
     }
     #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:transparent!important}
     .main{background:transparent!important;min-height:100vh}
