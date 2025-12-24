@@ -23,7 +23,7 @@
   <!-- Inline Critical CSS for immediate render -->
   <style>
     /* Critical Bootstrap grid & utilities */
-    *,::after,::before{box-sizing:border-box}body{margin:0;font-family:Roboto,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff}
+    *,::after,::before{box-sizing:border-box}body{margin:0;font-family:Roboto,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('assets/img/Beach%20House%20Image.webp') center/cover fixed!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;background-attachment:fixed!important}
     .container,.container-fluid{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
     .row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}
     .col-lg-10{position:relative;width:100%;padding-right:15px;padding-left:15px}
@@ -32,16 +32,34 @@
     .text-center{text-align:center!important}.position-relative{position:relative!important}.fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030}
     .px-3{padding-left:1rem!important;padding-right:1rem!important}
     /* Critical custom styles - Header & Hero */
-    .header{background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);padding:1rem 0;transition:all 0.3s ease}
+    .header{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:1rem 0!important;transition:all 0.3s ease;z-index:1030}
     .logo{text-decoration:none;display:flex;align-items:center}
-    .sitename{font-size:1rem!important;color:#fff!important;margin:0}
+    .site-logo{font-size:1rem!important;color:#fff!important;margin:0}
     .logo-img{height:100px!important;max-height:100px!important;width:auto;margin-left:10px}
-    .hero-title{font-size:3.6rem;font-weight:700;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin:0;text-align:center;white-space:nowrap;position:relative;left:20px}
-    .navmenu ul{list-style:none;margin:0;padding:0;display:flex;gap:2rem}
-    .navmenu a{color:#fff;text-decoration:none;font-weight:500;transition:color 0.3s}
-    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('assets/img/Beach%20House%20Image.webp') center/cover}
+    .site-title{font-size:3.6rem;font-weight:700;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin:0;text-align:center;white-space:nowrap;position:relative;left:20px}
+    .navmenu{display:flex;padding:0;font-size:1rem}
+    .navmenu ul{list-style:none;margin:0;padding:0;display:flex;gap:0}
+    .navmenu li{position:relative;left:30px}
+    .navmenu a{color:#000!important;text-decoration:none;font-weight:500;padding:18px 10px;display:flex;align-items:center;transition:color 0.3s}
+    .navmenu li:last-child a{padding-right:0}
+    .navmenu a.active,.navmenu a:hover{color:#24b7a4!important}
+    .mobile-nav-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;line-height:0;transition:0.5s;position:fixed;top:20px;right:20px;z-index:9999}
+    .bi::before{display:inline-block;font-family:bootstrap-icons!important;font-style:normal;font-weight:400!important;font-variant:normal;text-transform:none;line-height:1;vertical-align:-.125em}
+    .bi-list:before{content:"\f479"}
+    .bi-x:before{content:"\f62a"}
+    @media (max-width:1199px){
+      .navmenu{position:fixed;top:0;right:-100%;width:300px;height:100vh;background:rgba(0,0,0,0.95);padding:50px 20px;transition:0.3s;z-index:9998;display:block!important}
+      body.mobile-nav-active .navmenu{right:0}
+      .navmenu ul{flex-direction:column;gap:1rem}
+      .navmenu li{width:100%!important;text-align:left!important}
+      .navmenu li:nth-child(5){width:100%!important;text-align:left!important;padding-left:20px!important}
+      .mobile-nav-toggle{display:block!important}
+      .site-title{font-size:1.5rem!important}
+    }
+    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:transparent!important}
+    .main{background:transparent!important;min-height:100vh}
     .section{padding:60px 0}
-    .transparent-background{background:transparent}
+    .transparent-background{background:transparent!important}
     .description-box{background:rgba(255,255,255,0.95);padding:2rem 2.5rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-width:900px;margin:0 auto;position:relative;right:35px}
     .description-box p{font-size:1rem;line-height:1.6;color:#333;margin-bottom:1rem}
     .oval-button{display:inline-block;padding:20px 74px;margin-top:50px;position:relative;right:50px;background:#22ff4e;color:#fff;text-decoration:none;border-radius:50px;font-size:2rem;font-weight:600;transition:all 0.3s ease;box-shadow:0 5px 20px rgba(102,126,234,0.4)}
@@ -80,13 +98,13 @@
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
       <a href="#home" class="logo d-flex align-items-center">
-        <h1 class="sitename">MBHC</h1>
+        <div class="site-logo">MBH</div>
         <img src="assets/img/MBH  Logo 2.webp" alt="Beach Houses in Mayaro Logo" class="logo-img" width="100" height="100">
       </a>
 
-      <h1 class="hero-title">Beach Houses in Mayaro</h1>
+      <h2 class="site-title">Beach Houses in Mayaro</h2>
 
-      <nav id="navmenuc" class="navmenu">
+      <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#about">About</a></li>

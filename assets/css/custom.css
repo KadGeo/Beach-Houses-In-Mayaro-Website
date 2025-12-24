@@ -72,6 +72,10 @@
   left:20px;
 }
 
+.site-logo{
+  font-weight: 700;
+}
+
 /* Hide hero title and site title when page is scrolled */
 body.scrolled .hero-title,
 body.scrolled .site-title {
