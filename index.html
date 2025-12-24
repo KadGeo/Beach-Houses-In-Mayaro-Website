@@ -363,14 +363,16 @@
   <!-- Main JS File - Deferred -->
   <script src="assets/js/main.js" defer></script>
 
-  <!-- Custom Booking Script - Deferred -->
-  <script defer>
-    // Initialize date pickers
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+  <!-- Custom Booking Script - Must run after Flatpickr loads -->
+  <script>
+    // Wait for Flatpickr to load before initializing
+    window.addEventListener('load', function() {
+      // Initialize date pickers
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const checkInPicker = flatpickr("#checkIn", {
+      const checkInPicker = flatpickr("#checkIn", {
       minDate: "today",
       dateFormat: "Y-m-d",
       onChange: function(selectedDates, dateStr, instance) {
@@ -444,6 +446,7 @@
 
       window.addEventListener('scroll', highlightNav);
     });
+    }); // Close window.addEventListener('load')
   </script>
 
 </body>
