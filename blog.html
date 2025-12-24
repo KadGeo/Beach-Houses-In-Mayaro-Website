@@ -10,18 +10,24 @@
 <!-- Favicons -->
 <link href="assets/img/MBH  Logo 2.png" rel="icon"/>
 <link href="assets/img/MBH  Logo 2.png" rel="apple-touch-icon"/>
-<!-- Fonts -->
+<!-- Preconnect to external domains -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&amp;display=swap" rel="stylesheet"/>
-<!-- Vendor CSS Files -->
+<!-- Critical CSS - Bootstrap & Main (render-blocking, but necessary) -->
 <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="assets/css/main.css" rel="stylesheet"/>
+<link href="assets/css/custom.css" rel="stylesheet"/>
+<!-- Deferred CSS - Load after page render -->
+<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'"/>
+<link href="assets/vendor/aos/aos.css" rel="stylesheet" media="print" onload="this.media='all'"/>
+<!-- Fonts - Deferred with font-display swap -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<!-- Fallback for browsers without JS -->
+<noscript>
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"/>
 <link href="assets/vendor/aos/aos.css" rel="stylesheet"/>
-<!-- Main CSS File -->
-<link href="assets/css/main.css" rel="stylesheet"/>
-<!-- Custom CSS File -->
-<link href="assets/css/custom.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&amp;family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&amp;family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&amp;display=swap" rel="stylesheet"/>
+</noscript>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "FAQPage",
