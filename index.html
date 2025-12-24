@@ -17,6 +17,9 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
 
+  <!-- Preload critical hero background image -->
+  <link rel="preload" as="image" href="assets/img/Beach%20House%20Image.webp" type="image/webp" fetchpriority="high">
+
   <!-- Inline Critical CSS for immediate render -->
   <style>
     /* Critical Bootstrap grid & utilities */
@@ -36,7 +39,7 @@
     .hero-title{font-size:3.6rem;font-weight:700;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin:0;text-align:center;white-space:nowrap;position:relative;left:20px}
     .navmenu ul{list-style:none;margin:0;padding:0;display:flex;gap:2rem}
     .navmenu a{color:#fff;text-decoration:none;font-weight:500;transition:color 0.3s}
-    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('assets/img/Beach%20House%20Image.png') center/cover}
+    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('assets/img/Beach%20House%20Image.webp') center/cover}
     .section{padding:60px 0}
     .transparent-background{background:transparent}
     .description-box{background:rgba(255,255,255,0.95);padding:2rem 2.5rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-width:900px;margin:0 auto;position:relative;right:35px}
@@ -77,8 +80,8 @@
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
       <a href="#home" class="logo d-flex align-items-center">
-        <h1 class="sitename">MBHL</h1>
-        <img src="assets/img/MBH  Logo 2.webp" alt="Beach Houses in Mayaro Logo" class="logo-img">
+        <h1 class="sitename">MBHC</h1>
+        <img src="assets/img/MBH  Logo 2.webp" alt="Beach Houses in Mayaro Logo" class="logo-img" width="100" height="100">
       </a>
 
       <h1 class="hero-title">Beach Houses in Mayaro</h1>
@@ -327,19 +330,19 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+  <!-- Vendor JS Files - Deferred for performance -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="assets/vendor/php-email-form/validate.js" defer></script>
+  <script src="assets/vendor/aos/aos.js" defer></script>
 
-  <!-- Flatpickr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Flatpickr JS - Deferred -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <!-- Main JS File - Deferred -->
+  <script src="assets/js/main.js" defer></script>
 
-  <!-- Custom Booking Script -->
-  <script>
+  <!-- Custom Booking Script - Deferred -->
+  <script defer>
     // Initialize date pickers
     const today = new Date();
     const tomorrow = new Date(today);
