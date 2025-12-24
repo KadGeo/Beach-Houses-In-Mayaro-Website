@@ -17,10 +17,38 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
 
-  <!-- Critical CSS - Bootstrap & Main (render-blocking, but necessary) -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/custom.css" rel="stylesheet">
+  <!-- Inline Critical CSS for immediate render -->
+  <style>
+    /* Critical Bootstrap grid & utilities */
+    *,::after,::before{box-sizing:border-box}body{margin:0;font-family:Roboto,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff}
+    .container,.container-fluid{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+    .row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}
+    .col-lg-10{position:relative;width:100%;padding-right:15px;padding-left:15px}
+    @media (min-width:992px){.col-lg-10{flex:0 0 83.333333%;max-width:83.333333%}}
+    .d-flex{display:flex!important}.align-items-center{align-items:center!important}.justify-content-center{justify-content:center!important}.justify-content-between{justify-content:space-between!important}
+    .text-center{text-align:center!important}.position-relative{position:relative!important}.fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030}
+    .px-3{padding-left:1rem!important;padding-right:1rem!important}
+    /* Critical custom styles - Header & Hero */
+    .header{background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);padding:1rem 0;transition:all 0.3s ease}
+    .logo{text-decoration:none;display:flex;align-items:center}
+    .sitename{font-size:1rem!important;color:#fff!important;margin:0}
+    .logo-img{height:100px!important;max-height:100px!important;width:auto;margin-left:10px}
+    .hero-title{font-size:3.6rem;font-weight:700;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin:0;text-align:center;white-space:nowrap;position:relative;left:20px}
+    .navmenu ul{list-style:none;margin:0;padding:0;display:flex;gap:2rem}
+    .navmenu a{color:#fff;text-decoration:none;font-weight:500;transition:color 0.3s}
+    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('assets/img/Beach%20House%20Image.png') center/cover}
+    .section{padding:60px 0}
+    .transparent-background{background:transparent}
+    .description-box{background:rgba(255,255,255,0.95);padding:2rem 2.5rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-width:900px;margin:0 auto;position:relative;right:35px}
+    .description-box p{font-size:1rem;line-height:1.6;color:#333;margin-bottom:1rem}
+    .oval-button{display:inline-block;padding:20px 74px;margin-top:50px;position:relative;right:50px;background:#22ff4e;color:#fff;text-decoration:none;border-radius:50px;font-size:2rem;font-weight:600;transition:all 0.3s ease;box-shadow:0 5px 20px rgba(102,126,234,0.4)}
+    @media (max-width:768px){.logo-img{height:50px!important;max-height:50px!important}.hero-title{font-size:1rem;left:52%;transform:translateX(-40%)}.description-box{padding:1.5rem;margin:1rem;right:0}.oval-button{right:0}}
+  </style>
+
+  <!-- Deferred CSS - Load after initial render -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/css/main.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/css/custom.css" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Deferred CSS - Load after page render -->
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'">
@@ -32,6 +60,9 @@
 
   <!-- Fallback for browsers without JS -->
   <noscript>
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
