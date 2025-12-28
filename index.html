@@ -394,7 +394,7 @@
     });
 
     // Handle form submission
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const formData = {
@@ -410,13 +410,34 @@
       const checkOutDate = new Date(formData.checkOut);
       const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
 
-      // Display booking summary
-      alert(`Booking Request Summary:\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
-      
-      // Reset form
-      this.reset();
-      checkInPicker.clear();
-      checkOutPicker.clear();
+      // Add nights to formData
+      formData.nights = nights;
+
+      // Send data to n8n webhook
+      try {
+        const response = await fetch('https://n8n.yourdomain.com/webhook-test/e92c47ab-0e7d-4907-a2af-f337e02f900a', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+          // Display success message
+          alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
+
+          // Reset form
+          this.reset();
+          checkInPicker.clear();
+          checkOutPicker.clear();
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch (error) {
+        console.error('Error submitting booking:', error);
+        alert('There was an error submitting your booking request. Please try again or contact us directly.');
+      }
     });
 
     // Smooth scroll and active nav highlighting
