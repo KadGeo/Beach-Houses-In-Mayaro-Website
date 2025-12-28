@@ -373,8 +373,107 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mobile Navigation - Override main.css */
+@media (max-width: 1199px) {
+  .mobile-nav-toggle {
+    display: block !important;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    line-height: 0;
+    transition: 0.5s;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  .navmenu {
+    font-size: 1rem;
+    position: fixed !important;
+    top: 0 !important;
+    left: -100% !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 100vw;
+    height: 50vh;
+    background: rgba(0, 0, 0, 0.98);
+    padding: 0;
+    transition: left 0.3s ease;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+  }
+
+  body.mobile-nav-active .navmenu {
+    left: 0 !important;
+  }
+
+  .navmenu ul {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-height: 100vh;
+    position: relative;
+    z-index: 100000;
+    display: flex !important;
+    padding: 20px;
+    overflow-y: auto;
+    transform: translateY(-40px);
+    
+    
+  }
+
+  .navmenu li {
+    width: 100% !important;
+    text-align: center !important;
+    position: static !important;
+    left: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .navmenu li:nth-child(5) {
+    width: 100% !important;
+    text-align: center !important;
+    padding-left: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .navmenu a {
+    color: #fff !important;
+    font-size: 1.3rem;
+    padding: 8px 20px;
+  }
+
+  .site-title {
+    font-size: 1rem !important;
+    display: block !important;
+    position: absolute !important;
+    left: 52% !important;
+    transform: translateX(-40%) !important;
+    white-space: nowrap !important;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+  .navmenu ul {
+    gap: 0.8rem;
+    padding: 0px 20px 20px 20px;
+  }
+
+  .navmenu a {
+    font-size: 1.1rem !important;
+    padding: 6px 15px !important;
+  }
+
   .sitename {
     font-size: 1.2rem !important;
   }
@@ -404,6 +503,8 @@ html {
     white-space: nowrap;
   }
 
+
+
   .description-box {
     padding: 1.5rem;
     margin: 1rem;
@@ -417,6 +518,8 @@ html {
 
   .section-header {
     right: 0;
+    font-size: 3.6rem;
+    font-weight: 900;
   }
 
   .booking-form-container {
