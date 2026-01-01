@@ -1,3 +1,6 @@
+# Set default index file
+DirectoryIndex index.html index.htm
+
 # Enable browser caching for static assets
 <IfModule mod_expires.c>
   ExpiresActive On
