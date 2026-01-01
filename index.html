@@ -364,9 +364,9 @@
 
   <!-- Booking Configuration Data -->
   <script>
-    // Global booking configuration
+    // Global booking configuration with default values
     window.bookingConfig = {
-      "country": "TT",
+      "country": "TT",  // Default fallback to Trinidad & Tobago
       "destination_area_id": "mayaro",
       "property_id": "",
       "channel": "website",
@@ -374,6 +374,32 @@
       "utm_medium": "cpc",
       "utm_campaign": "mayaro-beach-houses"
     };
+
+    // Detect visitor's country via IP geolocation
+    async function detectCountry() {
+      try {
+        const response = await fetch('https://ipapi.co/json/', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          window.bookingConfig.country = data.country_code || 'TT';
+          console.log('Detected country:', window.bookingConfig.country, '|', data.country_name);
+        } else {
+          console.warn('Geolocation API response not OK, using default country: TT');
+        }
+      } catch (error) {
+        console.warn('Geolocation detection failed, using default country: TT', error);
+        // Keeps default 'TT'
+      }
+    }
+
+    // Run country detection on page load
+    detectCountry();
   </script>
 
   <!-- Custom Booking Script - Must run after Flatpickr loads -->

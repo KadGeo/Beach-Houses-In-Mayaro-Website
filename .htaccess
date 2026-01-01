@@ -1,5 +1,18 @@
+# Disable directory browsing
+Options -Indexes
+
 # Set default index file
 DirectoryIndex index.html index.htm
+
+# Force serve index.html for root directory
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # If requesting directory root, serve index.html
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.*)$ $1/index.html [L]
+</IfModule>
 
 # Enable browser caching for static assets
 <IfModule mod_expires.c>
