@@ -362,6 +362,20 @@
   <!-- Main JS File - Deferred -->
   <script src="assets/js/main.js" defer></script>
 
+  <!-- Booking Configuration Data -->
+  <script>
+    // Global booking configuration
+    window.bookingConfig = {
+      "country": "TT",
+      "destination_area_id": "mayaro",
+      "property_id": "",
+      "channel": "website",
+      "utm_source": "google",
+      "utm_medium": "cpc",
+      "utm_campaign": "mayaro-beach-houses"
+    };
+  </script>
+
   <!-- Custom Booking Script - Must run after Flatpickr loads -->
   <script>
     // Wait for Flatpickr to load before initializing
@@ -413,6 +427,12 @@
       // Add nights to formData
       formData.nights = nights;
 
+      // Merge with booking configuration data
+      const bookingPayload = {
+        ...formData,
+        ...window.bookingConfig
+      };
+
       // Send data to n8n webhook
       try {
         const response = await fetch('https://n8n.cewd.space/webhook-test/e92c47ab-0e7d-4907-a2af-f337e02f900a', {
@@ -420,7 +440,7 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(bookingPayload)
         });
 
         if (response.ok) {
