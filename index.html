@@ -402,6 +402,91 @@
     detectCountry();
   </script>
 
+  <!-- Request ID Generator for Idempotent Bookings -->
+  <script>
+    // ---- Frontend-safe request_id generator (idempotency key) ----
+
+    const REQUEST_ID_STORAGE_KEY = "booking_request_id_v1";
+    const REQUEST_ID_CREATED_AT_KEY = "booking_request_id_created_at_v1";
+
+    // How long we keep the same request_id to survive refresh/retry (minutes)
+    const REQUEST_ID_TTL_MINUTES = 30;
+
+    function pad2(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function yymmNowUTC() {
+      const d = new Date();
+      const yy = String(d.getUTCFullYear()).slice(-2);
+      const mm = pad2(d.getUTCMonth() + 1);
+      return yy + mm;
+    }
+
+    function timestampUTC() {
+      // 20260103T142233Z
+      const d = new Date();
+      const YYYY = d.getUTCFullYear();
+      const MM = pad2(d.getUTCMonth() + 1);
+      const DD = pad2(d.getUTCDate());
+      const hh = pad2(d.getUTCHours());
+      const mm = pad2(d.getUTCMinutes());
+      const ss = pad2(d.getUTCSeconds());
+      return `${YYYY}${MM}${DD}T${hh}${mm}${ss}Z`;
+    }
+
+    function secureRandomHex(bytes = 16) {
+      const arr = new Uint8Array(bytes);
+      crypto.getRandomValues(arr);
+      return Array.from(arr, b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function generateRequestId(prefix = "BK") {
+      const yymm = yymmNowUTC();
+      const ts = timestampUTC();
+
+      // Best: crypto.randomUUID (supported in modern browsers)
+      let rand;
+      if (crypto.randomUUID) {
+        rand = crypto.randomUUID().replaceAll("-", "");
+      } else {
+        // Fallback: secure random bytes
+        rand = secureRandomHex(16);
+      }
+
+      return `${prefix}_${yymm}_${ts}_${rand}`;
+    }
+
+    function isExpired(createdAtMs) {
+      const ageMs = Date.now() - createdAtMs;
+      return ageMs > REQUEST_ID_TTL_MINUTES * 60 * 1000;
+    }
+
+    function getOrCreateRequestId() {
+      const existing = localStorage.getItem(REQUEST_ID_STORAGE_KEY);
+      const createdAtRaw = localStorage.getItem(REQUEST_ID_CREATED_AT_KEY);
+      const createdAt = createdAtRaw ? Number(createdAtRaw) : 0;
+
+      if (existing && createdAt && !isExpired(createdAt)) {
+        return existing; // survive refresh/retry
+      }
+
+      const fresh = generateRequestId("BK");
+      localStorage.setItem(REQUEST_ID_STORAGE_KEY, fresh);
+      localStorage.setItem(REQUEST_ID_CREATED_AT_KEY, String(Date.now()));
+      return fresh;
+    }
+
+    function clearRequestId() {
+      localStorage.removeItem(REQUEST_ID_STORAGE_KEY);
+      localStorage.removeItem(REQUEST_ID_CREATED_AT_KEY);
+    }
+
+    // Make available globally for booking form
+    window.getOrCreateRequestId = getOrCreateRequestId;
+    window.clearRequestId = clearRequestId;
+  </script>
+
   <!-- Custom Booking Script - Must run after Flatpickr loads -->
   <script>
     // Wait for Flatpickr to load before initializing
@@ -453,8 +538,12 @@
       // Add nights to formData
       formData.nights = nights;
 
-      // Merge with booking configuration data
+      // Generate or retrieve idempotent request_id
+      const requestId = window.getOrCreateRequestId();
+
+      // Merge with booking configuration data + request_id
       const bookingPayload = {
+        request_id: requestId,
         ...formData,
         ...window.bookingConfig
       };
@@ -470,6 +559,9 @@
         });
 
         if (response.ok) {
+          // Clear request_id after successful submission
+          window.clearRequestId();
+
           // Display success message
           alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
 
