@@ -442,19 +442,19 @@
     }
 
     function generateRequestId(prefix = "BK") {
-      const yymm = yymmNowUTC();
-      const ts = timestampUTC();
+      const yymm = yymmNowUTC().trim();
+      const ts = timestampUTC().trim();
 
       // Best: crypto.randomUUID (supported in modern browsers)
       let rand;
       if (crypto.randomUUID) {
-        rand = crypto.randomUUID().replaceAll("-", "");
+        rand = crypto.randomUUID().replaceAll("-", "").trim();
       } else {
         // Fallback: secure random bytes
-        rand = secureRandomHex(16);
+        rand = secureRandomHex(16).trim();
       }
 
-      return `${prefix}_${yymm}_${ts}_${rand}`;
+      return `${prefix}_${yymm}_${ts}_${rand}`.trim();
     }
 
     function isExpired(createdAtMs) {
@@ -550,7 +550,7 @@
       formData.nights = nights;
 
       // Generate or retrieve idempotent request_id
-      const requestId = window.getOrCreateRequestId();
+      const requestId = window.getOrCreateRequestId().trim();
 
       // Merge with booking configuration data + request_id
       const bookingPayload = {
