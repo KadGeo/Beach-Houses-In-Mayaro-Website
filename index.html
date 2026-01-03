@@ -489,8 +489,16 @@
 
   <!-- Custom Booking Script - Must run after Flatpickr loads -->
   <script>
+    console.log('🚀 Booking script loaded!');
+    console.log('Request ID functions available:', {
+      getOrCreateRequestId: typeof window.getOrCreateRequestId,
+      clearRequestId: typeof window.clearRequestId
+    });
+
     // Wait for Flatpickr to load before initializing
     window.addEventListener('load', function() {
+      console.log('✅ Page fully loaded, initializing form...');
+
       // Initialize date pickers
       const today = new Date();
       const tomorrow = new Date(today);
@@ -522,6 +530,9 @@
     document.getElementById('bookingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
+      console.log('=== FORM SUBMITTED ===');
+      console.log('getOrCreateRequestId exists?', typeof window.getOrCreateRequestId);
+
       const formData = {
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
@@ -547,6 +558,10 @@
         ...formData,
         ...window.bookingConfig
       };
+
+      // Debug: Log the payload being sent
+      console.log('Sending booking payload:', bookingPayload);
+      console.log('Request ID:', requestId);
 
       // Send data to n8n webhook
       try {
