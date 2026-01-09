@@ -574,16 +574,28 @@
         });
 
         if (response.ok) {
-          // Clear request_id after successful submission
-          window.clearRequestId();
+          // Parse the response from n8n
+          const result = await response.json();
 
-          // Display success message
-          alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
+          if (result.success === false && result.message === "Inquiry already exists") {
+            // Duplicate inquiry detected
+            alert(`Inquiry Already Exists!\n\nYour booking inquiry has already been submitted.\n\nRequest ID: ${result.request_id}\n\nWe'll contact you shortly regarding your original inquiry.`);
 
-          // Reset form
-          this.reset();
-          checkInPicker.clear();
-          checkOutPicker.clear();
+            // Don't clear request_id or reset form for duplicates
+            // User might want to modify and resubmit
+          } else {
+            // Successful new submission
+            // Clear request_id after successful submission
+            window.clearRequestId();
+
+            // Display success message
+            alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
+
+            // Reset form
+            this.reset();
+            checkInPicker.clear();
+            checkOutPicker.clear();
+          }
         } else {
           throw new Error('Submission failed');
         }
