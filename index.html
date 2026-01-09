@@ -541,13 +541,13 @@
         guests: document.getElementById('guests').value
       };
 
-      // Calculate number of nights
+      // Calculate number of days
       const checkInDate = new Date(formData.checkIn);
       const checkOutDate = new Date(formData.checkOut);
-      const nights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+      const Days = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
 
-      // Add nights to formData
-      formData.nights = nights;
+      // Add Days to formData
+      formData.Days = Days;
 
       // Generate or retrieve idempotent request_id
       const requestId = window.getOrCreateRequestId().trim();
@@ -589,7 +589,7 @@
             window.clearRequestId();
 
             // Display success message
-            alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nNights: ${nights}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
+            alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nDays: ${Days}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
 
             // Reset form
             this.reset();
