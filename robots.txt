@@ -9,6 +9,7 @@ Sitemap: https://beachhousesinmayaro.com/sitemap.xml
 # Disallow crawling of specific directories
 Disallow: /assets/vendor/
 Disallow: /forms/
+Disallow: /search/
 
 # Allow all other pages
 Allow: /index.html
