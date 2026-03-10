@@ -21,6 +21,12 @@
   }
 }
 
+/* Header - align items to top */
+.header {
+  align-items: flex-start !important;
+  padding-top: 0.25rem !important;
+}
+
 /* Logo Image Styling */
 .logo-img {
   height: 100px !important;
@@ -35,9 +41,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
   position: relative;
-  padding: 0;
+  padding-top: 40px;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .sitename {
@@ -46,6 +54,7 @@
 }
 
 .hero-title {
+  padding-top: 12rem;
   font-size: 3.6rem;
   font-weight: 700;
   color: #fff;
@@ -54,9 +63,18 @@
   text-align: center;
   white-space: nowrap;
   transition: opacity 1s ease, visibility 1s ease;
-  position:relative;
-  left:20px;
+  position: relative;
+  left: 20px;
+}
 
+.sub-hero {
+  font-size: 1.4rem;
+  font-weight: 700;
+  position: relative;
+  left: 0;
+  transform: none;
+  white-space: normal;
+  text-align: center;
 }
 
 .site-title {
@@ -373,6 +391,9 @@ html {
   scroll-behavior: smooth;
 }
 
+/*Desktop Navigation - Override main.css */
+@media (min-width: 1200px) {.sub-hero {padding-right: 7rem;}}
+
 /* Mobile Navigation - Override main.css */
 @media (max-width: 1199px) {
   .mobile-nav-toggle {
@@ -484,13 +505,13 @@ html {
   }
 
   .hero-title {
-    font-size: 1rem;
-    display: block;
+    padding-top: 90px;
+    font-size: 1.4rem;
+    position: relative;
     left: 0;
-    position: absolute;
-    left: 52%;
-    transform: translateX(-40%);
-    white-space: nowrap;
+    transform: none;
+    white-space: normal;
+    text-align: center;
   }
 
   .site-title {
@@ -504,6 +525,10 @@ html {
   }
 
 
+
+  #home {
+    padding-top: 20px;
+  }
 
   .description-box {
     padding: 1.5rem;

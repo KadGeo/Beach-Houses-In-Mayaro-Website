@@ -52,8 +52,9 @@
     .bi-list:before{content:"\f479"}
     .bi-x:before{content:"\f62a"}
     @media (max-width:1199px){
-      .navmenu{position:fixed;top:0!important;left:-100%;bottom:0!important;right:0!important;width:100vw;height:100vh;min-height:100vh;background:rgba(0,0,0,0.98);padding:0;transition:left 0.3s ease;z-index:99999!important;display:flex!important;align-items:center;justify-content:center;overflow-y:auto}
+      .navmenu{position:fixed;top:0!important;left:-100%;bottom:0!important; right:0!important;width:100vw;height:100vh;min-height:100vh;background:rgba(0,0,0,0.98);padding:0;transition:left 0.3s ease;z-index:99999!important;display:flex!important;align-items:center;justify-content:center;overflow-y:auto}
       body.mobile-nav-active .navmenu{left:0!important}
+     
       .navmenu ul{flex-direction:column;gap:2rem;align-items:center;justify-content:center;text-align:center;width:100%;position:relative;z-index:100000}
       .navmenu li{width:100%!important;text-align:center!important;position:static!important;left:0!important;display:flex!important;justify-content:center!important}
       .navmenu li:nth-child(5){width:100%!important;text-align:center!important;padding-left:0!important;display:flex!important;justify-content:center!important}
@@ -61,14 +62,14 @@
       .mobile-nav-toggle{display:block!important}
       .site-title{font-size:1rem!important;display:block!important;position:absolute!important;left:52%!important;transform:translateX(-40%)!important;white-space:nowrap!important}
     }
-    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:0;background:transparent!important}
+    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding-top:140px;padding-bottom:0;padding-left:0;padding-right:0;background:transparent!important}
     .main{background:transparent!important;min-height:100vh}
     .section{padding:60px 0}
     .transparent-background{background:transparent!important}
     .description-box{background:rgba(255,255,255,0.95);padding:2rem 2.5rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-width:900px;margin:0 auto;position:relative;right:35px}
     .description-box p{font-size:1rem;line-height:1.6;color:#333;margin-bottom:1rem}
     .oval-button{display:inline-block;padding:20px 74px;margin-top:50px;position:relative;right:50px;background:#22ff4e;color:#fff;text-decoration:none;border-radius:50px;font-size:2rem;font-weight:600;transition:all 0.3s ease;box-shadow:0 5px 20px rgba(102,126,234,0.4)}
-    @media (max-width:768px){.logo-img{height:50px!important;max-height:50px!important}.hero-title{font-size:1rem;left:52%;transform:translateX(-40%)}.description-box{padding:1.5rem;margin:1rem;right:0}.oval-button{right:0}}
+    @media (max-width:768px){.logo-img{height:50px!important;max-height:50px!important}.hero-title{font-size:1rem;left:52%;padding-top: 2rem;transform:translateX(-40%)}.sub-hero{top: 3rem;}.description-box{padding:1.5rem;margin:1rem;right:0}.oval-button{right:0}#home{padding-top:90px!important}}
   </style>
 
   <!-- Deferred CSS - Load after initial render -->
@@ -124,6 +125,9 @@
   </header>
 
   <main class="main">
+    <div class="hero-title">
+      <h1 class="sub-hero">Luxegetawaystt Bookings Online</h1>
+    </div>
 
     <!-- Home Section -->
     <section id="home" class="section transparent-background">
@@ -132,8 +136,6 @@
           <div class="col-lg-10">
 
             <div class="description-box" data-aos="fade-up" data-aos-delay="200">
-
-      
 
               <p>
                 Experience authentic Caribbean living at our beach houses in Mayaro the village on Trinidad's beautiful east coast. 
