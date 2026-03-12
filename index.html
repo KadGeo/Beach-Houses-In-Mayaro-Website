@@ -194,8 +194,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="feature-card">
               <i class="bi bi-images"></i>
-              <h4>Property Photos & Location Maps</h4>
-              <p>Receive detailed photos of your beach house in Mayaro with pool or beachfront access and its Google Maps location </p>
+              <h4>We'll Do All the Searching For You</h4>
+              <p>Based on all of your preferences we will provide you with a list of options tailored to your needs. Property photos and location maps will be provided </p>
             </div>
           </div>
         </div>
@@ -281,6 +281,14 @@
 
       </div>
     </section>
+
+  <!-- Booking Result Modal -->
+  <div id="booking-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
+    <div id="booking-modal-box">
+      <p id="booking-modal-msg"></p>
+      <button id="booking-modal-close">Close</button>
+    </div>
+  </div>
 
   </main>
 
@@ -589,7 +597,7 @@
 
           if (result.success === false && result.message === "Inquiry already exists") {
             // Duplicate inquiry detected
-            alert(`Inquiry Already Exists!\n\nYour booking inquiry has already been submitted.\n\nRequest ID: ${result.request_id}\n\nWe'll contact you shortly regarding your original inquiry.`);
+            showBookingModal(`Inquiry Already Exists!\n\nYour booking inquiry has already been submitted.\n\nRequest ID: ${result.request_id}\n\nWe'll contact you shortly regarding your original inquiry.`);
 
             // Don't clear request_id or reset form for duplicates
             // User might want to modify and resubmit
@@ -599,7 +607,7 @@
             window.clearRequestId();
 
             // Display success message
-            alert(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nDays: ${Days}\nGuests: ${formData.guests}\n\nThank you! We'll check availability and contact you shortly.`);
+            showBookingModal(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nDays: ${Days}\nGuests: ${formData.guests}\n\nThank you for choosing us! Someone at Luxegetawaystt will check availability and be in contact with you shortly.`);
 
             // Reset form
             this.reset();
@@ -613,6 +621,16 @@
         console.error('Error submitting booking:', error);
         alert('There was an error submitting your booking request. Please try again or contact us directly.');
       }
+    });
+
+    // Booking result modal
+    function showBookingModal(msg) {
+      const modal = document.getElementById('booking-modal');
+      document.getElementById('booking-modal-msg').innerText = msg;
+      modal.style.display = 'flex';
+    }
+    document.getElementById('booking-modal-close').addEventListener('click', function() {
+      document.getElementById('booking-modal').style.display = 'none';
     });
 
     // Smooth scroll and active nav highlighting

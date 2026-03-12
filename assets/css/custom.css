@@ -1,23 +1,101 @@
 /* Custom SPA Styles for Mayaro Beach Houses */
 
-/* Navigation Menu Styling - Blog Below Contact */
+/* Booking Result Modal */
+#booking-modal-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  width: 90%;
+  max-width: 420px;
+  color: #333;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+#booking-modal-msg {
+  white-space: pre-line;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+#booking-modal-close {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #24b7a4;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#booking-modal-close:hover {
+  background: #1d9e8d;
+}
+
 @media (min-width: 1200px) {
+  #booking-modal-box {
+    max-width: 680px;
+    padding: 2.5rem 3rem;
+  }
+
+  #booking-modal-msg {
+    font-size: 1.05rem;
+  }
+}
+
+/* Navigation Menu - C-shape, top-right (desktop only) */
+@media (min-width: 1200px) {
+  /* Re-centre site-title now that navmenu is out of flex flow */
+  .header .container-fluid {
+    justify-content: flex-start !important;
+  }
+
+  .site-title {
+    margin: 0 0 0 10px !important;
+  }
+
+  .navmenu {
+    position: absolute !important;
+    right: 10px !important;
+    left: auto !important;
+    top: 0 !important;
+  }
+
   .navmenu ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
+    position: relative !important;
+    display: block !important;
+    width: 130px !important;
+    height: 130px !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .navmenu li:nth-child(5) {
-    position: absolute;
-    top: 100%;
-    left: auto;
-    right: -15px;
-    padding-left: 10px;
+  .navmenu li {
+    position: absolute !important;
+    transform: translate(-50%, -50%) !important;
+  
   }
 
-  .navmenu li:nth-child(5) a {
-    padding-top: 0;
+  /*
+    C-shape (opens right): centre (120, 65), radius 60px
+    90° (top) → 135° → 180° (spine) → 225° → 270° (bottom)
+    x = 120 + 60·cos(θ),  y = 65 − 60·sin(θ)
+  */
+  .navmenu li:nth-child(1) { left: 110px; top: 5px;   } /* Home     90° */
+  .navmenu li:nth-child(2) { left: 78px;  top: 50px;  } /* About   135° */
+  .navmenu li:nth-child(3) { left: 60px;  top: 100px;  } /* Booking 180° */
+  .navmenu li:nth-child(4) { left: 78px;  top: 150px; } /* Contact 225° */
+  .navmenu li:nth-child(5) { left: 120px; top: 200px; } /* Blog    270° */
+
+  .navmenu a,
+  .navmenu a:focus {
+    font-size: 20px !important;
+    padding: 5px 8px !important;
+    white-space: nowrap !important;
+    text-decoration: underline !important;
   }
 }
 
