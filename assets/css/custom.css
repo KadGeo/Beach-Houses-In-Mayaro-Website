@@ -1,5 +1,7 @@
 /* Custom SPA Styles for Mayaro Beach Houses */
 
+
+
 /* Booking Result Modal */
 #booking-modal-box {
   background: #fff;
@@ -153,6 +155,14 @@
   transform: none;
   white-space: normal;
   text-align: center;
+}
+
+/* Luxe Getaways logo - centred under sub-hero */
+.luxe-getawaystt-logo {
+  text-align: center;
+  margin-right: 120px;
+  margin-bottom: 20px; 
+  
 }
 
 .site-title {
@@ -608,6 +618,9 @@ html {
     padding-top: 20px;
   }
 
+  .luxe-getawaystt-logo {
+    margin-left: 100px;
+  }
   .description-box {
     padding: 1.5rem;
     margin: 1rem;
