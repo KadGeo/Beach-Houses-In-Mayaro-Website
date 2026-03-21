@@ -296,6 +296,47 @@
     </div>
   </div>
 
+  <!-- Extra Booking Pull Panel -->
+  <div id="extra-panel">
+    <button id="extra-panel-tab" aria-label="Additional booking options">Click Here</button>
+    <div id="extra-panel-label" aria-label="Open additional booking options">Want More?</div>
+    <div id="extra-panel-body">
+      <h5>Tell Us What You Want</h5>
+
+      <div class="extra-field">
+        <label for="ep-phone">Phone Number</label>
+        <input type="tel" id="ep-phone" placeholder="Ensures Fast Service">
+      </div>
+
+      <div class="extra-field">
+        <label for="ep-budget">Budget (TTD)</label>
+        <input type="number" id="ep-budget" placeholder="e.g. $2000">
+      </div>
+
+      <div class="extra-group">
+        <h6>Amenities</h6>
+        <label><input type="checkbox" value="pool"> Pool</label>
+        <label><input type="checkbox" value="ac"> Air Condition</label>
+        <label><input type="checkbox" value="scenic"> Scenic View</label>
+        <label><input type="checkbox" value="pet"> Pet Friendly House</label>
+      </div>
+
+      <div class="extra-group">
+        <h6>Services</h6>
+        <label><input type="checkbox" value="photo"> Photography</label>
+        <label><input type="checkbox" value="video"> Videography</label>
+        <label><input type="checkbox" value="tour"> Tour Guides</label>
+        <label><input type="checkbox" value="events"> Event Planning</label>
+        <label><input type="checkbox" value="music"> Music and Entertainment</label>
+      </div>
+
+      <div class="extra-field">
+        <label for="ep-special">Special Request</label>
+        <textarea id="ep-special" rows="4" placeholder="If we're missing any events, services, or amenities that you might be interested in please let us know here"></textarea>
+      </div>
+    </div>
+  </div>
+
   </main>
 
   <!-- Social Media Widget -->
@@ -562,7 +603,12 @@
         email: document.getElementById('email').value,
         checkIn: document.getElementById('checkIn').value,
         checkOut: document.getElementById('checkOut').value,
-        guests: document.getElementById('guests').value
+        guests: document.getElementById('guests').value,
+        phone: document.getElementById('ep-phone').value || '',
+        budget: document.getElementById('ep-budget').value || '',
+        amenities: Array.from(document.querySelectorAll('#extra-panel-body .extra-group:nth-of-type(1) input[type="checkbox"]:checked')).map(cb => cb.value),
+        services: Array.from(document.querySelectorAll('#extra-panel-body .extra-group:nth-of-type(2) input[type="checkbox"]:checked')).map(cb => cb.value),
+        specialRequest: document.getElementById('ep-special').value || ''
       };
 
       // Calculate number of days
@@ -637,6 +683,47 @@
     }
     document.getElementById('booking-modal-close').addEventListener('click', function() {
       document.getElementById('booking-modal').style.display = 'none';
+    });
+
+    // Extra booking pull panel
+    document.getElementById('extra-panel-tab').addEventListener('click', function() {
+      document.getElementById('extra-panel').classList.toggle('open');
+    });
+    document.getElementById('extra-panel-label').addEventListener('click', function() {
+      document.getElementById('extra-panel').classList.toggle('open');
+    });
+
+    // Fade in extra-panel when inside #booking and all fields are filled
+    const extraPanel = document.getElementById('extra-panel');
+    const bookingFields = ['fullName', 'email', 'checkIn', 'checkOut', 'guests'];
+    let inBookingSection = false;
+
+    function allFieldsFilled() {
+      return bookingFields.every(id => {
+        const el = document.getElementById(id);
+        return el && el.value.trim() !== '';
+      });
+    }
+
+    function updatePanelVisibility() {
+      if (inBookingSection && allFieldsFilled()) {
+        extraPanel.classList.add('panel-visible');
+      } else {
+        extraPanel.classList.remove('panel-visible');
+        extraPanel.classList.remove('open');
+      }
+    }
+
+    const bookingObserver = new IntersectionObserver(function(entries) {
+      inBookingSection = entries[0].isIntersecting;
+      updatePanelVisibility();
+    }, { threshold: 0.1 });
+
+    bookingObserver.observe(document.getElementById('booking'));
+
+    bookingFields.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', updatePanelVisibility);
     });
 
     // Smooth scroll and active nav highlighting
