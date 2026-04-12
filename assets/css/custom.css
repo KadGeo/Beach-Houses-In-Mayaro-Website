@@ -475,6 +475,8 @@ body.scrolled .site-title {
   font-size: 0.9rem;
 }
 
+
+
 .form-control, .form-select {
   padding: 10px 15px;
   border: 2px solid #e0e0e0;
@@ -615,7 +617,13 @@ html {
 }
 
 /*Desktop Navigation - Override main.css */
-@media (min-width: 1200px) {.sub-hero {padding-right: 7rem;}}
+@media (min-width: 1200px) {
+  .sub-hero { padding-right: 7rem; }
+
+  label[for="email"] {
+    padding-left: 10px;
+  }
+}
 
 /* Mobile Navigation - Override main.css */
 @media (max-width: 1199px) {
@@ -704,6 +712,8 @@ html {
     transform: translateX(-40%) !important;
     white-space: nowrap !important;
   }
+
+  
 }
 
 /* Responsive Design */

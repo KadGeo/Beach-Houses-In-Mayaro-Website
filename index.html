@@ -219,7 +219,7 @@
           <form id="bookingForm">
             <!-- Contact Information Row -->
             <div class="row mb-4">
-              <div class="col-md-6 mb-3 mb-md-0">
+              <div class="col-md-4 mb-3 mb-md-0">
                 <label for="fullName" class="form-label">Full Name:</label>
                 <div class="input-group-icon">
                   <input type="text" class="form-control" id="fullName" name="fullName"
@@ -228,12 +228,18 @@
                 </div>
               </div>
               
-              <div class="col-md-6">
-                <label for="email" class="form-label">Email:</label>
-                <div class="input-group-icon">
-                  <input type="email" class="form-control" id="email" name="email" 
-                         placeholder="your.email@example.com" required>
-                  <i class="bi bi-envelope"></i>
+              <div class="col-md-8">
+                <div class="row g-0">
+                  <div class="col-6">
+                    <label for="phone-contact" class="form-label">Contact#</label>
+                    <input type="tel" class="form-control rounded-end-0" id="phone-contact" name="phoneContact"
+                           placeholder="(<5 MINS WE Respond!" required>
+                  </div>
+                  <div class="col-6">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control rounded-start-0" id="email" name="email"
+                           placeholder="example@email.com" required>
+                  </div>
                 </div>
               </div>
             </div>
@@ -622,7 +628,7 @@
       // Add Days to formData
       formData.Days = Days;
 
-      // Generate or retrieve idempotent request_id
+      // Generate or retrieve idempotent request
       const requestId = window.getOrCreateRequestId().trim();
 
       // Merge with booking configuration data + request_id
