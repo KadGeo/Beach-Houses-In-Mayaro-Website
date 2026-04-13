@@ -232,13 +232,13 @@
                 <div class="row g-0">
                   <div class="col-6">
                     <label for="phone-contact" class="form-label">Contact#</label>
-                    <input type="tel" class="form-control rounded-end-0" id="phone-contact" name="phoneContact"
-                           placeholder="<5 MINS Response!! 🕒" required>
+                    <input type="tel" class="form-control rounded-end-0" id="ep-phone" name="phoneContact"
+                           placeholder="<5 MINS Response!! 🕒">
                   </div>
                   <div class="col-6">
                     <label for="email" class="form-label">Email:</label>
                     <input type="email" class="form-control rounded-start-0" id="email" name="email"
-                           placeholder="Example@email.com" required>
+                           placeholder="jsmith@email.com">
                   </div>
                 </div>
               </div>
@@ -302,17 +302,31 @@
     </div>
   </div>
 
+  <!-- More Options Prompt Modal -->
+  <div id="more-options-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
+    <div id="more-options-box">
+      <p id="more-options-msg">Would you like more options?</p>
+      <div id="more-options-buttons">
+        <button id="more-options-yes">Yes</button>
+        <button id="more-options-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel Arrows -->
+  <div id="panel-arrows">
+    <span class="panel-arrow">&#8594;</span>
+    <span class="panel-arrow">&#8594;</span>
+    <span class="panel-arrow">&#8594;</span>
+    <span class="panel-arrow">&#8594;</span>
+  </div>
+
   <!-- Extra Booking Pull Panel -->
   <div id="extra-panel">
     <button id="extra-panel-tab" aria-label="Additional booking options">Click Here</button>
     <div id="extra-panel-label" aria-label="Open additional booking options">Want More?</div>
     <div id="extra-panel-body">
       <h5>Tell Us What You Want</h5>
-
-      <div class="extra-field">
-        <label for="ep-phone">Phone Number</label>
-        <input type="tel" id="ep-phone" placeholder="Ensures Fast Service">
-      </div>
 
       <div class="extra-field">
         <label for="ep-budget">Budget (TTD)</label>
@@ -603,6 +617,43 @@
     // Handle form submission
     document.getElementById('bookingForm').addEventListener('submit', async function(e) {
       e.preventDefault();
+      const form = this;
+
+      // Step 1: Check at least one contact field is filled
+      const phoneVal = document.getElementById('ep-phone').value.trim();
+      const emailVal = document.getElementById('email').value.trim();
+      if (!phoneVal && !emailVal) {
+        showBookingModal('You must at least enter your contact or your email to proceed with your booking.');
+        return;
+      }
+
+      // Step 2: If extra panel already open, skip prompt and submit directly
+      if (document.getElementById('extra-panel').classList.contains('open')) {
+        submitBookingForm(form);
+        return;
+      }
+
+      // Step 3: All fields valid — show "more options?" prompt
+      const modal = document.getElementById('more-options-modal');
+      modal.style.display = 'flex';
+
+      document.getElementById('more-options-yes').onclick = function() {
+        modal.style.display = 'none';
+        const panel = document.getElementById('extra-panel');
+        panel.classList.add('panel-visible');
+        panel.classList.add('open');
+        const arrows = document.getElementById('panel-arrows');
+        arrows.classList.add('visible');
+        setTimeout(() => arrows.classList.remove('visible'), 3000);
+      };
+
+      document.getElementById('more-options-no').onclick = function() {
+        modal.style.display = 'none';
+        submitBookingForm(form);
+      };
+    });
+
+    async function submitBookingForm(form) {
 
       console.log('=== FORM SUBMITTED ===');
       console.log('getOrCreateRequestId exists?', typeof window.getOrCreateRequestId);
@@ -671,7 +722,7 @@
             showBookingModal(`Booking Request Submitted Successfully!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nCheck-in: ${formData.checkIn}\nCheck-out: ${formData.checkOut}\nDays: ${Days}\nGuests: ${formData.guests}\n\nThank you for choosing us! Someone at Luxegetawaystt will check availability and be in contact with you shortly.`);
 
             // Reset form
-            this.reset();
+            form.reset();
             checkInPicker.clear();
             checkOutPicker.clear();
           }
@@ -682,7 +733,7 @@
         console.error('Error submitting booking:', error);
         alert('There was an error submitting your booking request. Please try again or contact us directly.');
       }
-    });
+    }
 
     // Booking result modal
     function showBookingModal(msg) {
@@ -704,14 +755,17 @@
 
     // Fade in extra-panel when inside #booking and all fields are filled
     const extraPanel = document.getElementById('extra-panel');
-    const bookingFields = ['fullName', 'email', 'checkIn', 'checkOut', 'guests'];
+    const bookingFields = ['fullName', 'checkIn', 'checkOut', 'guests'];
     let inBookingSection = false;
 
     function allFieldsFilled() {
-      return bookingFields.every(id => {
+      const requiredFilled = bookingFields.every(id => {
         const el = document.getElementById(id);
         return el && el.value.trim() !== '';
       });
+      const contactFilled = document.getElementById('ep-phone').value.trim() !== ''
+                         || document.getElementById('email').value.trim() !== '';
+      return requiredFilled && contactFilled;
     }
 
     function updatePanelVisibility() {
@@ -734,6 +788,8 @@
       const el = document.getElementById(id);
       if (el) el.addEventListener('input', updatePanelVisibility);
     });
+    document.getElementById('ep-phone').addEventListener('input', updatePanelVisibility);
+    document.getElementById('email').addEventListener('input', updatePanelVisibility);
 
     // Smooth scroll and active nav highlighting
     document.addEventListener('DOMContentLoaded', function() {
