@@ -12,12 +12,14 @@
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
+  const selectBody = document.querySelector('body');
+  const selectHeader = document.querySelector('#header');
+
   function toggleScrolled() {
-    if (!document.querySelector('body').classList.contains('scroll-up-sticky') && !document.querySelector('body').classList.contains('sticky-top') && !document.querySelector('body').classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? document.querySelector('body').classList.add('scrolled') : document.querySelector('body').classList.remove('scrolled');
+    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
+    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
   }
 
-  document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
   /**
@@ -87,7 +89,21 @@
   });
 
   window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
+
+  /**
+   * Debounced scroll handler — prevents forced reflow on every scroll event
+   */
+  let scrollTicking = false;
+  document.addEventListener('scroll', function() {
+    if (!scrollTicking) {
+      requestAnimationFrame(function() {
+        toggleScrolled();
+        toggleScrollTop();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
 
   /**
    * Animation on scroll function and init

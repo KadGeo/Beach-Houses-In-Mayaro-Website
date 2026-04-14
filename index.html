@@ -29,18 +29,70 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://cdn.jsdelivr.net" rel="preconnect" crossorigin>
 
-  <!-- Vendor CSS -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- Preload critical assets -->
+  <link rel="preload" as="image" href="assets/img/Beach%20House%20Image.webp" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="font" type="font/woff2" href="assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/carousel%20images/1.%20head.Hummingbird%20Villa_sm_96.webp" type="image/webp" fetchpriority="high">
 
-  <!-- Site CSS -->
-  <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/custom.css" rel="stylesheet">
+  <!-- Inline Critical CSS -->
+  <style>
+    *,::after,::before{box-sizing:border-box}
+    html{min-height:100%;width:100%;overflow-x:hidden;margin:0;padding:0}
+    body{margin:0;padding:0;font-family:Roboto,system-ui,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#fff;min-height:100%;width:100%;position:relative;overflow-x:hidden;background:url('assets/img/Beach%20House%20Image.webp') top center/cover no-repeat}
+    body::before{content:'';position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(49,71,89,0.6);z-index:-1;pointer-events:none}
+    .container,.container-fluid{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+    .d-flex{display:flex!important}.align-items-center{align-items:center!important}.justify-content-between{justify-content:space-between!important}
+    .position-relative{position:relative!important}.fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030}.px-3{padding-left:1rem!important;padding-right:1rem!important}
+    .header{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:1rem 0!important;transition:all 0.3s ease;z-index:1030;align-items:flex-start!important;padding-top:.25rem!important}
+    .logo{text-decoration:none;display:flex;align-items:center}.site-logo{font-size:1rem!important;color:#fff!important;margin:0;font-weight:700}
+    .logo-img{height:100px!important;max-height:100px!important;width:auto;margin-left:10px}
+    .site-title{font-size:3.6rem;font-weight:700;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin:0;text-align:center;white-space:nowrap;position:relative;left:20px;transition:opacity 1s ease,visibility 1s ease}
+    body.scrolled .site-title{opacity:0;visibility:hidden}
+    .navmenu{display:flex;padding:0;font-size:1rem}.navmenu ul{list-style:none;margin:0;padding:0;display:flex;gap:0}
+    .navmenu li{position:relative;left:30px}
+    .navmenu a,.navmenu a:focus{color:#fff!important;text-decoration:none;font-weight:500;padding:18px 10px;display:flex;align-items:center;transition:color 0.3s}
+    .navmenu a.active,.navmenu a:hover{color:#24b7a4!important}
+    .mobile-nav-toggle{display:none;font-size:28px;color:#fff;cursor:pointer;line-height:0;transition:0.5s;position:fixed;top:20px;right:20px;z-index:9999}
+    .bi::before{display:inline-block;font-family:bootstrap-icons!important;font-style:normal;font-weight:400!important;font-variant:normal;text-transform:none;line-height:1;vertical-align:-.125em}
+    .bi-list:before{content:"\f479"}.bi-x:before{content:"\f62a"}
+    .conveyor-offset{padding-top:12rem}.conveyor-wrapper{width:100%;display:flex;align-items:center;gap:6px}
+    .conveyor-viewport{flex:1;overflow:hidden}.conveyor-track{display:flex;transition:transform 0.4s ease}
+    .conveyor-img{width:120px;height:120px;object-fit:cover;object-position:center;flex-shrink:0;cursor:pointer;border:2px solid rgba(255,255,255,0.4)}
+    .conveyor-nav-btn{background:#000;border:2px solid #fff;color:#cfff0d;font-size:4rem;line-height:1;padding:.2rem .7rem;cursor:pointer;border-radius:6px;flex-shrink:0}
+    @media(max-width:1199px){
+      .navmenu{position:fixed;top:0!important;left:-100%;bottom:0!important;right:0!important;width:100vw;height:100vh;min-height:100vh;background:rgba(0,0,0,0.98);padding:0;transition:left 0.3s ease;z-index:99999!important;display:flex!important;align-items:center;justify-content:center;overflow-y:auto}
+      body.mobile-nav-active .navmenu{left:0!important}
+      .navmenu ul{flex-direction:column;gap:2rem;align-items:center;justify-content:center;text-align:center;width:100%;position:relative;z-index:100000}
+      .navmenu li{width:100%!important;text-align:center!important;position:static!important;left:0!important;display:flex!important;justify-content:center!important}
+      .navmenu a{color:#fff!important;font-size:1.5rem;padding:10px 20px}
+      .mobile-nav-toggle{display:block!important}
+      .site-title{font-size:1rem!important;display:block!important;position:absolute!important;left:52%!important;transform:translateX(-40%)!important;white-space:nowrap!important}
+      .conveyor-offset{padding-top:4rem}.conveyor-img{width:90px;height:90px}
+    }
+    @media(max-width:768px){.logo-img{height:50px!important;max-height:50px!important}}
+  </style>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Raleway:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Deferred CSS -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/css/main.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/css/custom.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
+
+  <!-- Fonts - deferred, Roboto only -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- Noscript fallback -->
+  <noscript>
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  </noscript>
 </head>
 
 <body class="index-page">
@@ -51,7 +103,7 @@
 
       <a href="#home" class="logo d-flex align-items-center">
         <div class="site-logo">MBH</div>
-        <img src="assets/img/MBH  Logo 2.webp" alt="Beach Houses in Mayaro Logo" class="logo-img">
+        <img src="assets/img/mbh-logo-100.webp" alt="Beach Houses in Mayaro Logo" class="logo-img" width="100" height="100">
       </a>
 
       <h2 class="site-title">Beach Houses in Mayaro</h2>
@@ -136,17 +188,17 @@
 
     <!-- Home Section -->
     <section id="home" class="section transparent-background">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-10">
 
             <div class="luxe-getawaystt-logo" data-aos="fade-up" data-aos-delay="100">
               <a href="https://www.instagram.com/luxegetawaystt/" title="Follow us on Instagram" target="_blank">
-                <img src="assets/img/Luxe Getaways Logo Transparent background.3.webp" alt="Luxe Getaways TT Logo" width="120" height="120">
+                <img src="assets/img/luxe-logo-120.webp" alt="Luxe Getaways TT Logo" width="120" height="120">
               </a>
             </div>
 
-            <div class="description-box" data-aos="fade-up" data-aos-delay="200">
+            <div class="description-box">
 
               <p>
                 Experience authentic Caribbean living at our beach houses in Mayaro the village on Trinidad's beautiful east coast. 
@@ -431,7 +483,7 @@
       <!-- TTNeTTwork Business Directory Badge -->
       <div class="mt-3">
         <a href="https://www.ttnettwork.com/diego-martin/%EF%BB%BFhidden-top-category/beach-houses-in-mayaro?from=badge" title="Find me on T&T Business Network (TTNeTTwork.com)" target="_blank">
-          <img src="https://www.ttnettwork.com/images/memberbadge.png" alt="TTNeTTwork Member" style="border: none; max-width: 50px; height: auto;"/>
+          <img src="assets/img/memberbadge.webp" alt="TTNeTTwork Member" width="50" height="50" style="border: none;"/>
         </a>
       </div>
     </div>
@@ -491,7 +543,8 @@
       }
     }
 
-    detectCountry();
+    // Defer country detection until after page load — keeps ipapi.co off the critical path
+    window.addEventListener('load', detectCountry);
   </script>
 
   <!-- Request ID Generator for Idempotent Bookings -->
