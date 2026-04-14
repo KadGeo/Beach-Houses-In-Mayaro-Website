@@ -59,6 +59,25 @@
     .conveyor-viewport{flex:1;overflow:hidden}.conveyor-track{display:flex;transition:transform 0.4s ease}
     .conveyor-img{width:120px;height:120px;object-fit:cover;object-position:center;flex-shrink:0;cursor:pointer;border:2px solid rgba(255,255,255,0.4)}
     .conveyor-nav-btn{background:#000;border:2px solid #fff;color:#cfff0d;font-size:4rem;line-height:1;padding:.2rem .7rem;cursor:pointer;border-radius:6px;flex-shrink:0}
+    /* Bootstrap grid (needed for description-box container) */
+    .row{display:flex;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}
+    .col-lg-10{position:relative;width:100%;padding-right:15px;padding-left:15px}
+    @media(min-width:992px){.col-lg-10{flex:0 0 83.333333%;max-width:83.333333%}}
+    .justify-content-center{justify-content:center!important}.text-center{text-align:center!important}
+    /* Main & section layout */
+    .main{background:transparent!important;min-height:100vh}.section{padding:60px 0}.transparent-background{background:transparent!important}
+    /* #home section — must be inline or it shifts on deferred CSS load */
+    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding-top:40px;padding-bottom:0;padding-left:0;padding-right:0;background:transparent!important}
+    /* Hero text */
+    .hero-title{padding-top:12rem;font-size:3.6rem;font-weight:700;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin:0;text-align:center;white-space:nowrap;position:relative;left:20px}
+    .sub-hero{font-size:1.4rem;font-weight:700;position:relative;left:0;transform:none;white-space:normal;text-align:center;color:#fff}
+    /* LCP element container — must be inline or paragraph shifts on deferred CSS load */
+    .description-box{background:rgba(255,255,255,0.95);padding:2rem 2.5rem;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-width:900px;margin:0 auto;position:relative;right:35px}
+    .description-box p{font-size:1rem;line-height:1.6;color:#333;margin-bottom:1rem}
+    /* Luxe logo & book button */
+    .luxe-getawaystt-logo{text-align:center;margin-right:120px;margin-bottom:20px}
+    .conveyor-book-wrap{display:flex;justify-content:center;margin-top:1rem}
+    .conveyor-book-btn{padding:12px 40px;background:#3af846;color:#fff;border:none;border-radius:30px;font-size:1.1rem;font-weight:600;cursor:pointer}
     @media(max-width:1199px){
       .navmenu{position:fixed;top:0!important;left:-100%;bottom:0!important;right:0!important;width:100vw;height:100vh;min-height:100vh;background:rgba(0,0,0,0.98);padding:0;transition:left 0.3s ease;z-index:99999!important;display:flex!important;align-items:center;justify-content:center;overflow-y:auto}
       body.mobile-nav-active .navmenu{left:0!important}
@@ -69,7 +88,14 @@
       .site-title{font-size:1rem!important;display:block!important;position:absolute!important;left:52%!important;transform:translateX(-40%)!important;white-space:nowrap!important}
       .conveyor-offset{padding-top:4rem}.conveyor-img{width:90px;height:90px}
     }
-    @media(max-width:768px){.logo-img{height:50px!important;max-height:50px!important}}
+    @media(max-width:768px){
+      .logo-img{height:50px!important;max-height:50px!important}
+      .description-box{padding:1.5rem;margin:1rem;right:0}
+      .hero-title{padding-top:90px;font-size:1.4rem;left:0;white-space:normal}
+      .luxe-getawaystt-logo{margin-bottom:50px;margin-left:100px}
+      #home{padding-top:20px}
+      .conveyor-book-btn{margin-top:6rem}
+    }
   </style>
 
   <!-- Deferred CSS -->
@@ -81,7 +107,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
 
   <!-- Fonts - deferred, Roboto only -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Noscript fallback -->
   <noscript>
@@ -91,7 +117,7 @@
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=optional" rel="stylesheet">
   </noscript>
 </head>
 
@@ -194,7 +220,7 @@
 
             <div class="luxe-getawaystt-logo" data-aos="fade-up" data-aos-delay="100">
               <a href="https://www.instagram.com/luxegetawaystt/" title="Follow us on Instagram" target="_blank">
-                <img src="assets/img/luxe-logo-120.webp" alt="Luxe Getaways TT Logo" width="120" height="120">
+                <img src="assets/img/luxe-logo-180.webp" alt="Luxe Getaways TT Logo" width="120" height="120">
               </a>
             </div>
 
