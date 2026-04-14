@@ -340,6 +340,22 @@
   }
 }
 
+/* Push body overlay behind all content */
+body::before {
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Nav link colour — white on all screen sizes */
+.navmenu a,
+.navmenu a:focus {
+  color: #fff !important;
+}
+.navmenu a.active,
+.navmenu a:hover {
+  color: #24b7a4 !important;
+}
+
 /* Navigation Menu - C-shape, top-right (desktop only) */
 @media (min-width: 1200px) {
   /* Re-centre site-title now that navmenu is out of flex flow */
@@ -392,6 +408,7 @@
 
   .navmenu a,
   .navmenu a:focus {
+    color: #fff !important;
     font-size: 20px !important;
     padding: 5px 8px !important;
     white-space: nowrap !important;
