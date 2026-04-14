@@ -1,5 +1,78 @@
 /* Custom SPA Styles for Mayaro Beach Houses */
 
+/* Property Image Conveyor Belt */
+.conveyor-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.conveyor-track {
+  display: flex;
+  width: max-content;
+  animation: conveyor 30s linear infinite;
+}
+
+.conveyor-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.4);
+  transition: opacity 0.2s ease;
+}
+
+.conveyor-img:hover {
+  opacity: 0.85;
+}
+
+@keyframes conveyor {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.conveyor-offset {
+  padding-top: 12rem;
+}
+
+.conveyor-book-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.conveyor-book-btn {
+  padding: 12px 40px;
+  background: #3af846;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.conveyor-book-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+}
+
+@media (max-width: 768px) {
+  .conveyor-img {
+    width: 90px;
+    height: 90px;
+  }
+  .conveyor-track {
+    animation-duration: 75s;
+  }
+  .conveyor-offset {
+    padding-top: 4rem; /* adjust to taste */
+  }
+}
+
 /* Extra Booking Pull Panel */
 #extra-panel {
   position: fixed;
@@ -260,6 +333,11 @@
     justify-content: flex-start !important;
   }
 
+   .conveyor-book-btn {
+    margin-top:20px;
+    margin-right: 100px;
+  }
+
   .site-title {
     margin: 0 0 0 10px !important;
   }
@@ -388,8 +466,7 @@
   font-weight: 700;
 }
 
-/* Hide hero title and site title when page is scrolled */
-body.scrolled .hero-title,
+/* Hide site title only when page is scrolled */
 body.scrolled .site-title {
   opacity: 0;
   visibility: hidden;
@@ -694,6 +771,15 @@ html {
   label[for="email"] {
     padding-left: 11px;
   }
+
+  carousel-img {
+   right: 50px;
+  }
+
+  .conveyor-book-btn{
+    padding 20px 40px;
+    font-size: 1.5rem;
+     }
 }
 
 /* Mobile Navigation - Override main.css */
@@ -799,6 +885,7 @@ html {
     padding: 6px 15px !important;
   }
 
+
   .sitename {
     font-size: 1.2rem !important;
   }
@@ -900,5 +987,38 @@ html {
     letter-spacing: 2px;
     border-radius: 4px;
   }
+}
+
+/* Lightbox — prev/next arrows */
+.lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 3.5rem;
+  line-height: 1;
+  padding: 0.3rem 0.9rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.lightbox-arrow:hover { background: rgba(255, 255, 255, 0.35); }
+.lightbox-arrow-prev { left: 0.5rem; }
+.lightbox-arrow-next { right: 0.5rem; }
+
+/* Lightbox — blurred transparent backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.modal-backdrop.show { opacity: 1; }
+
+#carouselLightbox .modal-content {
+  background: transparent;
+  box-shadow: none;
 }
 
