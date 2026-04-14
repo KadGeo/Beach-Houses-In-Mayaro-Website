@@ -3,15 +3,34 @@
 /* Property Image Conveyor Belt */
 .conveyor-wrapper {
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.conveyor-viewport {
+  flex: 1;
   overflow: hidden;
 }
 
 .conveyor-track {
   display: flex;
-  width: max-content;
-  animation: conveyor 30s linear infinite;
-  will-change: transform;
+  transition: transform 0.4s ease;
 }
+
+.conveyor-nav-btn {
+  background: rgb(0, 0, 0);
+  border: 2px solid #fff;
+  color: #cfff0d;
+  font-size: 4rem;
+  line-height: 1;
+  padding: 0.2rem 0.7rem;
+  cursor: pointer;
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.conveyor-nav-btn:hover { background: rgba(128, 128, 128, 0.9); }
 
 .conveyor-img {
   width: 120px;
@@ -28,10 +47,6 @@
   opacity: 0.85;
 }
 
-@keyframes conveyor {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
 
 .conveyor-offset {
   padding-top: 12rem;
@@ -65,9 +80,6 @@
   .conveyor-img {
     width: 90px;
     height: 90px;
-  }
-  .conveyor-track {
-    animation-duration: 75s;
   }
   .conveyor-offset {
     padding-top: 4rem; /* adjust to taste */
