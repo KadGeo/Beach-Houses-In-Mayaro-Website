@@ -74,6 +74,9 @@
     .luxe-getawaystt-logo{text-align:center;margin-right:120px;margin-bottom:20px}
     .conveyor-book-wrap{display:flex;justify-content:center;margin-top:1rem}
     .conveyor-book-btn{padding:12px 40px;background:#3af846;color:#fff;border:none;border-radius:30px;font-size:1.1rem;font-weight:600;cursor:pointer}
+    /* oval-button — must be inline or its large padding/margin causes CLS on deferred CSS load */
+    .oval-button{display:inline-block;padding:20px 74px;margin-top:50px;position:relative;right:50px;background:#22ff4e;color:#fff;text-decoration:none;border-radius:50px;font-size:2rem;font-weight:600;transition:all 0.3s ease;box-shadow:0 5px 20px rgba(102,126,234,0.4);text-align:center}
+    @media(max-width:768px){.oval-button{right:0}}
     @media(max-width:1199px){
       .navmenu{position:fixed;top:0!important;left:-100%;bottom:0!important;right:0!important;width:100vw;height:100vh;min-height:100vh;background:rgba(0,0,0,0.98);padding:0;transition:left 0.3s ease;z-index:99999!important;display:flex!important;align-items:center;justify-content:center;overflow-y:auto}
       body.mobile-nav-active .navmenu{left:0!important}
@@ -553,13 +556,8 @@
             return;
           }
         }
-        const response = await fetch('/cdn-cgi/trace');
-        if (response.ok) {
-          const text = await response.text();
-          const code = text.match(/loc=([A-Z]{2})/)?.[1] || 'TT';
-          window.bookingConfig.country = code;
-          localStorage.setItem(CACHE_KEY, JSON.stringify({ code, ts: Date.now() }));
-        }
+        // Geolocation via external API — placeholder for Phase 2 server-side detection
+        // Default stays 'TT' until a same-origin endpoint is available
       } catch (e) {
         // Keeps default 'TT'
       }
