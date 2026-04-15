@@ -82,7 +82,7 @@
     height: 90px;
   }
   .conveyor-offset {
-    padding-top: 4rem; /* adjust to taste */
+    padding-top: 7rem; /* adjust to taste */
   }
 }
 
@@ -808,7 +808,7 @@ html {
   }
 
   .conveyor-book-btn{
-    padding 20px 40px;
+    padding: 20px 40px;
     font-size: 1.5rem;
      }
 }
@@ -956,7 +956,7 @@ html {
 
   .luxe-getawaystt-logo {
     margin-bottom: 50px;
-    margin-left: 100px;
+    margin-left: 135px;
   }
   .description-box {
     padding: 1.5rem;
