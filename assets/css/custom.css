@@ -901,7 +901,26 @@ html {
     white-space: nowrap !important;
   }
 
-  
+  .luxe-getawaystt-logo {
+    margin-left: 110px !important;
+   
+  }
+
+  #home .description-box {
+    right: 0 !important;
+    left: 0 !important;
+    margin: 1rem !important;
+  }
+
+  .oval-button {
+    right: 0 !important;
+    left: 0 !important;
+    margin: 1rem auto !important;
+  }
+
+  #about .section-header {
+    left: px !important;
+  }
 }
 
 /* Responsive Design */
@@ -947,7 +966,7 @@ html {
   }
 
 .conveyor-book-btn {
-   margin-top: 6rem;
+   margin-top: 0rem;
   }
 
   #home {
@@ -1027,18 +1046,18 @@ html {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #fff;
+  background: rgb(0, 0, 0);
+  border: 2px solid #fff;
+  color: #cfff0d;
   font-size: 3.5rem;
   line-height: 1;
-  padding: 0.3rem 0.9rem;
+  padding: 0.2rem 0.7rem;
   cursor: pointer;
   z-index: 10;
   border-radius: 6px;
   transition: background 0.2s;
 }
-.lightbox-arrow:hover { background: rgba(255, 255, 255, 0.35); }
+.lightbox-arrow:hover { background: rgba(128, 128, 128, 0.9); }
 .lightbox-arrow-prev { left: 0.5rem; }
 .lightbox-arrow-next { right: 0.5rem; }
 
