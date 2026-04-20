@@ -569,8 +569,8 @@ body.scrolled .site-title {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgb(0, 0, 0);
-  border: 2px solid #fff;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   color: #cfff0d;
   font-size: 3.5rem;
   line-height: 1;
